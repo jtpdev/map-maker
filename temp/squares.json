@@ -1,0 +1,44 @@
+[
+  {
+    "src": "Capturar.PNG",
+    "group": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "cars-time.jpg",
+    "group": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "chance_capa.jpeg",
+    "group": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  }
+]

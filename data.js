@@ -4,7 +4,6 @@ const fs = require('fs');
 module.exports = {
     saveConfig(config) {
         let file = __dirname + '/temp/config.json';
-        console.log(fs.existsSync(file))
         if (fs.existsSync(file)) {
             this.add(file, config);
         } else {
@@ -51,10 +50,40 @@ module.exports = {
                 .pipe(fs.createWriteStream(newFile));
             wrs.push(wr);
         }
-        fs.readdir(assetsFolder, (err, files) => {
-            files.forEach(file => {
-                console.log(file);
-            });
-        })
+        setTimeout(() => {
+            fs.readdir(assetsFolder, (err, files) => {
+                let assets = [];
+                files.forEach(file => {
+                    let asset = {
+                        src: file,
+                        group: [
+                            {
+                                title: "default",
+                                colisor: {
+                                    up: true,
+                                    right: true,
+                                    down: true,
+                                    left: true,
+                                }
+                            }
+                        ]
+                    }
+                    assets.push(asset);
+                });
+                // save objects and show
+                this.saveSquares(assets);
+            })
+        }, 1000 * images.length);
+    },
+    saveSquares(squares) {
+        let file = __dirname + '/temp/squares.json';
+        console.log(squares)
+        if (fs.existsSync(file)) {
+            this.add(file, squares);
+        } else {
+            this.create(file, {}).then(() => {
+                this.add(file, squares);
+            })
+        }
     }
 }

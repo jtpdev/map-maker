@@ -101,5 +101,5 @@ btnDoneConfig.addEventListener('click', event => {
 });
 
 inImportAssets.addEventListener('change', event => {
-    data.importAssets(inImportAssets.files, assets);
+    let squares = data.importAssets(inImportAssets.files, assets);
 });
