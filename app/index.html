@@ -20,6 +20,19 @@
             <h3>Explorer</h3>
             <button class="fas fa-angle-double-left" id="btn-hide-explorer" title="Hide explorer"></button>
         </div>
+        <div>
+            <button id="btn-config" block>Configuration</button>
+            <div class="config">
+                <div>
+                    c: <input type="number" class="input-md" id="c-config" value="100">
+                    r: <input type="number" class="input-md" id="r-config" value="100">
+                </div>
+                <div>
+                    size: <input type="number" id="size-config" value="64"> px
+                </div>
+                <button class="btn" id="btn-done-config" block>Done</button>
+            </div>
+        </div>
     </div>
     <div class="comp map" id="map"></div>
     <div class="comp properties h-properties header" id="h-properties">
@@ -32,6 +45,7 @@
         </div>
     </div>
 </body>
-<script>require('./js/main')</script>
+<script src="./js/main.js"></script>
+<!-- <script>require('./js/main')</script> -->
 
 </html>

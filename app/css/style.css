@@ -6,6 +6,7 @@
 html, body {
     font-family: roboto;
     background-color: #373737;
+    margin-top: 0;
 }
 
 .comp {
@@ -41,12 +42,6 @@ html, body {
     display: none;
 }
 
-.map {
-    left: 200px;
-    width: calc(100% - 400px);
-    background-color: #242424;
-}
-
 h3 {
     display: inline-block;
     width: 70%;
@@ -68,4 +63,58 @@ h3 {
     top: 15px;
     right: 15px;
     cursor: pointer;
+}
+
+input[type=number], input[type=text]  {
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #4d4d4d;
+    color: #FFF;
+}
+
+.input-md {
+    width: calc(50% - 36px);
+}
+
+#btn-config, #btn-done-config {
+    width: 100%;
+    color: #FFF;
+    background-color: #373737;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+}
+
+.btn {
+    background: #ff5d12 !important;
+}
+
+#size-config {
+    width: calc(100% - 81px);
+}
+
+.config > div {
+    margin: 5px 0;
+}
+
+.map {
+    left: 200px;
+    width: calc(100% - 400px);
+    background-color: #242424;
+    overflow: auto;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+.map-square {
+    border: 1px solid #c6c6c6;
+    border-bottom: 0;
+    border-right: 0;
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #FFF;
+    position: relative;
+    vertical-align: text-top;
 }
