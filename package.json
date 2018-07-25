@@ -10,6 +10,7 @@
   "author": "Jimmy Porto",
   "license": "MIT",
   "dependencies": {
-    "@fortawesome/fontawesome-free": "^5.2.0"
+    "@fortawesome/fontawesome-free": "^5.2.0",
+    "jsonfile-promised": "0.0.1"
   }
 }

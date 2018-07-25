@@ -24,13 +24,25 @@
             <button id="btn-config" block>Configuration</button>
             <div class="config">
                 <div>
-                    c: <input type="number" class="input-md" id="c-config" value="100">
-                    r: <input type="number" class="input-md" id="r-config" value="100">
+                    c: <input type="number" class="input-md" id="c-config" value="10">
+                    r: <input type="number" class="input-md" id="r-config" value="10">
                 </div>
                 <div>
                     size: <input type="number" id="size-config" value="64"> px
                 </div>
                 <button class="btn" id="btn-done-config" block>Done</button>
+            </div>
+        </div>
+        <div>
+            <button id="btn-config" block>Assets</button>
+            <div class="config">
+                <button class="btn" id="btn-import-assets">
+                    <label for="in-import-assets">Import</label>
+                    <input type="file" class="btn" id="in-import-assets" accept="image/*" multiple>
+                </button>
+                <div id="assets">
+
+                </div>
             </div>
         </div>
     </div>
@@ -45,7 +57,7 @@
         </div>
     </div>
 </body>
-<script src="./js/main.js"></script>
-<!-- <script>require('./js/main')</script> -->
+<!-- <script src="./js/main.js"></script> -->
+<script>require('./js/main')</script>
 
 </html>

@@ -118,3 +118,24 @@ input[type=number], input[type=text]  {
     position: relative;
     vertical-align: text-top;
 }
+
+input[type=file] {
+    display: none;
+}
+
+#btn-import-assets {
+    width: 100%;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    padding: 0;
+}
+
+#btn-import-assets > label {
+    cursor: pointer;
+    height: calc(100% - 10px) !important;
+    width: 100% !important;
+    display: block;
+    padding-top: 10px;
+}

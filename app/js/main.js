@@ -1,3 +1,5 @@
+const data = require('../../data');
+
 const btnHideExplorer = document.getElementById('btn-hide-explorer');
 const btnHideProperties = document.getElementById('btn-hide-properties');
 const btnShowExplorer = document.getElementById('btn-show-explorer');
@@ -13,8 +15,30 @@ const cConfig = document.getElementById('c-config');
 const rConfig = document.getElementById('r-config');
 const sConfig = document.getElementById('size-config');
 
-
 const map = document.getElementById('map');
+
+const inImportAssets = document.getElementById('in-import-assets');
+
+const assets = document.getElementById('assets');
+
+window.onload = () => {
+    data.getConfig()
+        .then((data) => {
+            if (data) {
+                cConfig.value = data.c;
+                rConfig.value = data.r;
+                sConfig.value = data.s;
+            } else {
+                cConfig.value = 10;
+                rConfig.value = 10;
+                sConfig.value = 64;
+            }
+        }, err => {
+            cConfig.value = 10;
+            rConfig.value = 10;
+            sConfig.value = 64;
+        });
+}
 
 btnHideExplorer.addEventListener('click', event => {
     explorer.style.display = "none";
@@ -43,20 +67,30 @@ btnShowProperties.addEventListener('click', event => {
 });
 
 btnDoneConfig.addEventListener('click', event => {
-    // save config
+
     let c = Math.abs(cConfig.value);
     let r = Math.abs(rConfig.value);
     let s = Math.abs(Number(sConfig.value));
     s = s > 20 ? s : 20;
+
+    // save config
+    let config = {
+        c,
+        r,
+        s
+    };
+
+    data.saveConfig(config);
+
     let h = r * s;
     let w = c * s;
 
-    let mapHtml = `<div class="map-html" style="width: ${w+5}px; height:${h+5}px" >`
-    for(let i = 0; i < r; i++) {
-        for(let j = 0; j < c; j++) {
+    let mapHtml = `<div class="map-html" style="width: ${w + 5}px; height:${h + 5}px" >`
+    for (let i = 0; i < r; i++) {
+        for (let j = 0; j < c; j++) {
             let id = `m_${i}_${j}`;
             let square =
-            `<span style="width: ${s-1}px; height:${s-1}px; ${(i+1) == r ? 'border-bottom: 1px solid;' : ''}${(j+1) == c ? 'border-right: 1px solid;' : ''}" class="map-square" id="${id}">
+                `<span style="width: ${s - 1}px; height:${s - 1}px; ${(i + 1) == r ? 'border-bottom: 1px solid;' : ''}${(j + 1) == c ? 'border-right: 1px solid;' : ''}" class="map-square" id="${id}">
                 
             </span>`;
             mapHtml += square;
@@ -64,4 +98,8 @@ btnDoneConfig.addEventListener('click', event => {
     }
     mapHtml += '</div>';
     map.innerHTML = mapHtml;
+});
+
+inImportAssets.addEventListener('change', event => {
+    data.importAssets(inImportAssets.files, assets);
 });
