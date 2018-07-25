@@ -1,0 +1,71 @@
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+html, body {
+    font-family: roboto;
+    background-color: #373737;
+}
+
+.comp {
+    height: 100%;
+    position: fixed;
+    margin: 0;
+    border: 1px solid #000;
+}
+
+.explorer, .properties {
+    width: 200px;
+    background-color: #373737;
+    color: #FFF;
+}
+
+.explorer {
+    left: 0;
+}
+
+.h-explorer {
+    left: 0;
+    width: 50px;
+    display: none;
+}
+
+.properties {
+    left: calc(100% - 200px);
+}
+
+.h-properties {
+    left: calc(100% - 50px);
+    width: 50px;
+    display: none;
+}
+
+.map {
+    left: 200px;
+    width: calc(100% - 400px);
+    background-color: #242424;
+}
+
+h3 {
+    display: inline-block;
+    width: 70%;
+    padding: 10px; 
+    margin-top: 0;
+    background-color: #242424
+}
+
+.header {
+    background: #242424;
+}
+
+.header > button {
+    display: inline-block;
+    color: #c6c6c6;
+    background: #242424;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}

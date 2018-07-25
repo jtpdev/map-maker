@@ -1,0 +1,15 @@
+{
+  "name": "map-maker",
+  "version": "1.0.0",
+  "description": "A creator of maps to games",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "packager": "electron-packager . elcoco --platform=win32 --arch=x64"
+  },
+  "author": "Jimmy Porto",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0"
+  }
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mapper</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <link rel="stylesheet" href="../node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <div class="comp explorer h-explorer header" id="h-explorer">
+        <button class="fas fa-angle-double-right" id="btn-show-explorer" title="Show explorer"></button>
+    </div>
+    <div class="comp explorer" id="explorer">
+        <div class="header">
+            <h3>Explorer</h3>
+            <button class="fas fa-angle-double-left" id="btn-hide-explorer" title="Hide explorer"></button>
+        </div>
+    </div>
+    <div class="comp map" id="map"></div>
+    <div class="comp properties h-properties header" id="h-properties">
+        <button class="fas fa-angle-double-left" id="btn-show-properties" title="Show properties"></button>
+    </div>
+    <div class="comp properties" id="properties">
+        <div class="header">
+            <h3>Properties</h3>
+            <button class="fas fa-angle-double-right" id="btn-hide-properties" title="Hide properties"></button>
+        </div>
+    </div>
+</body>
+<script>require('./js/main')</script>
+
+</html>
