@@ -1,19 +1,5 @@
 [
   {
-    "src": "dirt-512x512.jpg",
-    "groups": [
-      {
-        "title": "default",
-        "colisors": {
-          "up": false,
-          "right": false,
-          "down": false,
-          "left": false
-        }
-      }
-    ]
-  },
-  {
     "src": "grass-512x512.jpg",
     "groups": [
       {
@@ -78,6 +64,29 @@
           "up": true,
           "right": false,
           "down": true,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "dirt-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": false
+        }
+      },
+      {
+        "title": "Testa",
+        "colisors": {
+          "up": true,
+          "right": false,
+          "down": false,
           "left": false
         }
       }

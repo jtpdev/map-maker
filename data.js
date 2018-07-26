@@ -105,57 +105,97 @@ module.exports = {
 
                 imgSquare.addEventListener('click', event => {
                     inSrcSquare.value = s.src;
-                    // selectGroups.addEventListener('change', event => {
-                    //     this.getSquares().then(data => {
-                    //         data.forEach(s => {
-                    //             let selected = event.target.value;
-                    //             let groups = s.groups.filter(g => g.title == selected);
-                    //             cbUpColisors.disabled = false;
-                    //             cbRightColisors.disabled = false;
-                    //             cbDownColisors.disabled = false;
-                    //             cbLeftColisors.disabled = false;
-                    //             if (groups.length > 1) {
-                    //                 const group = groups[0];
-                    //                 updateGroup = g => {
-                    //                     if (g.title = group.title) {
-                    //                         return group;
-                    //                     } else {
-                    //                         return g;
-                    //                     }
-                    //                 };
-                    //                 this.updateSquares(s);
-                    //                 cbUpColisors.checked = group.up;
-                    //                 cbUpColisors.addEventListener('change', e => {
-                    //                     group.up = e.target.checked;
-                    //                     s.groups.map(updateGroup);
-                    //                     this.updateSquares(s);
-                    //                 });
+                    selectGroups.addEventListener('change', event => {
+                        this.getSquares().then(data => {
+                            data.filter(sq => sq.src == s.src).forEach(sqq => {
+                                let selected = event.target.value;
+                                let groups = sqq.groups.filter(g => g.title == selected);
+                                cbUpColisors.disabled = false;
+                                cbRightColisors.disabled = false;
+                                cbDownColisors.disabled = false;
+                                cbLeftColisors.disabled = false;
 
-                    //                 cbRightColisors.checked = group.right;
-                    //                 cbRightColisors.addEventListener('change', e => {
-                    //                     group.right = e.target.checked;
-                    //                     s.groups.map(updateGroup);
-                    //                     this.updateSquares(s);
-                    //                 });
+                                if (groups.length == 0) {
+                                    groups.push({
+                                        title: selected,
+                                        colisors: {
+                                            up: false,
+                                            right: false,
+                                            down: false,
+                                            left: false,
+                                        }
+                                    });
+                                    
+                                    const group = groups[0];
+                                    cbUpColisors.checked = group.colisors.up;
+                                    cbUpColisors.addEventListener('change', e => {
+                                        group.colisors.up = e.target.checked;
+                                        sqq.groups.push(group);
+                                        this.updateSquares(sqq);
+                                    });
 
-                    //                 cbDownColisors.checked = group.down;
-                    //                 cbDownColisors.addEventListener('change', e => {
-                    //                     group.down = e.target.checked;
-                    //                     s.groups.map(updateGroup);
-                    //                     this.updateSquares(s);
-                    //                 });
+                                    cbRightColisors.checked = group.colisors.right;
+                                    cbRightColisors.addEventListener('change', e => {
+                                        group.colisors.right = e.target.checked;
+                                        sqq.groups.push(group);
+                                        this.updateSquares(sqq);
+                                    });
 
-                    //                 cbLeftColisors.checked = group.left;
-                    //                 cbLeftColisors.addEventListener('change', e => {
-                    //                     group.left = e.target.checked;
-                    //                     s.groups.map(updateGroup);
-                    //                     this.updateSquares(s);
-                    //                 });
+                                    cbDownColisors.checked = group.colisors.down;
+                                    cbDownColisors.addEventListener('change', e => {
+                                        group.colisors.down = e.target.checked;
+                                        sqq.groups.push(group);
+                                        this.updateSquares(sqq);
+                                    });
 
-                    //             }
-                    //         });
-                    //     })
-                    // });
+                                    cbLeftColisors.checked = group.colisors.left;
+                                    cbLeftColisors.addEventListener('change', e => {
+                                        group.colisors.left = e.target.checked;
+                                        sqq.groups.push(group);
+                                        this.updateSquares(sqq);
+                                    });
+                                
+                                } else  if (groups.length > 0) {
+                                    const group = groups[0];
+                                    updateGroup = g => {
+                                        if (g.title == group.title) {
+                                            return group;
+                                        } else {
+                                            return g;
+                                        }
+                                    };
+                                    cbUpColisors.checked = group.colisors.up;
+                                    cbUpColisors.addEventListener('change', e => {
+                                        group.colisors.up = e.target.checked;
+                                        sqq.groups = sqq.groups.map(updateGroup);
+                                        this.updateSquares(sqq);
+                                    });
+
+                                    cbRightColisors.checked = group.colisors.right;
+                                    cbRightColisors.addEventListener('change', e => {
+                                        group.colisors.right = e.target.checked;
+                                        sqq.groups = sqq.groups.map(updateGroup);
+                                        this.updateSquares(sqq);
+                                    });
+
+                                    cbDownColisors.checked = group.colisors.down;
+                                    cbDownColisors.addEventListener('change', e => {
+                                        group.colisors.down = e.target.checked;
+                                        sqq.groups = sqq.groups.map(updateGroup);
+                                        this.updateSquares(sqq);
+                                    });
+
+                                    cbLeftColisors.checked = group.colisors.left;
+                                    cbLeftColisors.addEventListener('change', e => {
+                                        group.colisors.left = e.target.checked;
+                                        sqq.groups = sqq.groups.map(updateGroup);
+                                        this.updateSquares(sqq);
+                                    });
+
+                                }
+                            });
+                        })
+                    });
                     this.getGroups().then(data => {
                         let options = '';
                         data.forEach(g => {
@@ -185,7 +225,6 @@ module.exports = {
                                 cbUpColisors.addEventListener('change', e => {
                                     group.colisors.up = e.target.checked;
                                     sqq.groups = sqq.groups.map(updateGroup);
-                                    console.log(sqq);
                                     this.updateSquares(sqq);
                                 });
 
