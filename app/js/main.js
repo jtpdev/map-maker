@@ -141,6 +141,7 @@ addGroup = groupName => {
             && event.ctrlKey
             && event.target.value != 'default') {
             data.removeGroup(event.target.value);
+            ulGroups.removeChild(li);
         }
         if (event.key == 's' && event.ctrlKey) {
             data.removeGroup(groupName);
