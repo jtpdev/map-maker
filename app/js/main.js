@@ -22,6 +22,10 @@ const inImportAssets = document.getElementById('in-import-assets');
 
 const assets = document.getElementById('assets');
 
+const inGroupName = document.getElementById('group-name');
+const btnAddGroup = document.getElementById('btn-add-group');
+const ulGroups = document.getElementById('ul-groups');
+
 window.onload = () => {
     data.getConfig()
         .then((data) => {
@@ -39,7 +43,12 @@ window.onload = () => {
             rConfig.value = 10;
             sConfig.value = 64;
         });
-        data.showSquares(assets);
+    data.showSquares(assets);
+    data.getGroups().then(data => {
+        data.forEach(g => {
+            addGroup(g);
+        });
+    });
 }
 
 btnHideExplorer.addEventListener('click', event => {
@@ -101,7 +110,7 @@ btnDoneConfig.addEventListener('click', event => {
     mapHtml += '</div>';
     map.innerHTML = mapHtml;
     let maps = document.getElementsByClassName('map-square');
-    for(let k = 0; k < maps.length; k++) {
+    for (let k = 0; k < maps.length; k++) {
         let m = maps[k];
         m.addEventListener('drop', event => dnd.drop(event));
         m.addEventListener('dragover', dnd.allowDrop);
@@ -111,3 +120,46 @@ btnDoneConfig.addEventListener('click', event => {
 inImportAssets.addEventListener('change', event => {
     let squares = data.importAssets(inImportAssets.files, assets);
 });
+
+btnAddGroup.addEventListener('click', event => {
+    let groupName = inGroupName.value;
+    inGroupName.value = '';
+    addGroup(groupName);
+    data.saveGroup(groupName);
+});
+
+addGroup = groupName => {
+    let li = document.createElement('li');
+
+    let inp = document.createElement('input');
+    inp.type = 'text';
+    inp.value = groupName;
+    inp.classList.add('in-group');
+    
+    inp.addEventListener('keyup', event => {
+        if (event.key == 'd'
+            && event.ctrlKey
+            && event.target.value != 'default') {
+            data.removeGroup(event.target.value);
+        }
+        if (event.key == 's' && event.ctrlKey) {
+            data.removeGroup(groupName);
+            setTimeout(() => {
+                data.saveGroup(event.target.value);
+                groupName = event.target.value;
+            }, 1000);
+        }
+    });
+
+    li.appendChild(inp);
+    let children = ulGroups.childNodes;
+    let hasGroup;
+    for (let i = 0; i < children.length; i++) {
+        if (children[i].innerText == groupName) {
+            hasGroup = true;
+        }
+    }
+    if (!hasGroup) {
+        ulGroups.appendChild(li);
+    }
+}

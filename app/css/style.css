@@ -147,3 +147,22 @@ input[type=file] {
     margin: 5px;
     cursor: pointer;
 }
+
+.img-on-square {
+    cursor: pointer;
+}
+
+#group-name {
+    width: 150px;
+}
+
+#btn-add-group {
+    border: 0;
+    border-radius: 4px;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.in-group {
+    width: 100px;
+}

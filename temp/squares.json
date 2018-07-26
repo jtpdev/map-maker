@@ -1,0 +1,86 @@
+[
+  {
+    "src": "concrete-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "dirt-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "grass-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "metal-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "rock-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "rockbrick-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  }
+]

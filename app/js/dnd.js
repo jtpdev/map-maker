@@ -19,6 +19,8 @@ module.exports = {
         img.id = `img_${el.id}`;
         img.style.height = el.style.height;
         img.style.width = el.style.width;
+        img.classList.add('img-on-square');
+        img.title = imgSrc.title;
         img.draggable = true;
         img.addEventListener('dragstart', this.drag);
         el.appendChild(img);

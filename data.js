@@ -75,6 +75,7 @@ module.exports = {
             })
         }, 1000 * images.length);
     },
+
     showSquares(assets) {
         let assetsFolder = __dirname + '/temp/assets/';
         let htmlSquares = '';
@@ -96,6 +97,7 @@ module.exports = {
             console.log('No file to read!')
         });
     },
+
     saveSquares(squares, assets) {
         let showSquares = () => {
             this.showSquares(assets);
@@ -109,9 +111,51 @@ module.exports = {
             })
         }
     },
+
     getSquares() {
         let file = __dirname + '/temp/squares.json';
         return jsonfile.readFile(file);
-    }
+    },
+
+    saveGroup(group) {
+        let file = __dirname + '/temp/groups.json';
+        let groups = [group];
+        if (fs.existsSync(file)) {
+            this.getGroups().then(data => {
+                data.forEach(g => {
+                    if(!(g in groups)) {
+                        groups.push(g);
+                    }
+                });
+                this.add(file, groups);
+            });
+        } else {
+            this.create(file, []).then(() => {
+                this.getGroups().then(data => {
+                    data.forEach(g => {
+                        if(!(g in groups)) {
+                            groups.push(g);
+                        }
+                    });
+                    this.add(file, groups);
+                });
+            })
+        }
+    },
+
+    removeGroup(group) {
+        let file = __dirname + '/temp/groups.json';
+        this.getGroups().then(data => {
+            let groups = data.filter(g => {
+                return g != group;
+            });
+            this.add(file, groups);
+        });
+    },
+
+    getGroups() {
+        let file = __dirname + '/temp/groups.json';
+        return jsonfile.readFile(file);
+    },
 
 }
