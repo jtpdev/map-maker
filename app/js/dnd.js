@@ -8,13 +8,20 @@ module.exports = {
     },
     drop(ev) {
         ev.preventDefault();
+        let el = ev.target;
+        if(el.src) {
+            el = el.parentNode;
+        }
+        el.innerHTML = '';
         var data = ev.dataTransfer.getData("text");
         var imgSrc = document.getElementById(data);
         var img = this.clone(imgSrc);
-        img.id = `img_${ev.target.id}`;
-        img.style.height = ev.target.style.height;
-        img.style.width = ev.target.style.width;
-        ev.target.appendChild(img);
+        img.id = `img_${el.id}`;
+        img.style.height = el.style.height;
+        img.style.width = el.style.width;
+        img.draggable = true;
+        img.addEventListener('dragstart', this.drag);
+        el.appendChild(img);
     },
     clone(obj) {
         if (null == obj || "object" != typeof obj) return obj;
