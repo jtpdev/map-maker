@@ -38,6 +38,7 @@ window.onload = () => {
             rConfig.value = 10;
             sConfig.value = 64;
         });
+        data.showSquares(assets);
 }
 
 btnHideExplorer.addEventListener('click', event => {

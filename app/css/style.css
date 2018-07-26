@@ -139,3 +139,11 @@ input[type=file] {
     display: block;
     padding-top: 10px;
 }
+
+.img-square {
+    height: 64px;
+    width: 64px;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}

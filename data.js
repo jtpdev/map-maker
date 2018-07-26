@@ -18,7 +18,7 @@ module.exports = {
     },
 
     add(file, data) {
-        jsonfile.writeFile(file, data, { spaces: 2 })
+       return jsonfile.writeFile(file, data, { spaces: 2 })
             .then(() => {
                 console.log('added');
             }).catch((err) => {
@@ -52,11 +52,11 @@ module.exports = {
         }
         setTimeout(() => {
             fs.readdir(assetsFolder, (err, files) => {
-                let assets = [];
+                let lAssets = [];
                 files.forEach(file => {
                     let asset = {
                         src: file,
-                        group: [
+                        groups: [
                             {
                                 title: "default",
                                 colisor: {
@@ -68,22 +68,42 @@ module.exports = {
                             }
                         ]
                     }
-                    assets.push(asset);
+                    lAssets.push(asset);
                 });
-                // save objects and show
-                this.saveSquares(assets);
+                this.saveSquares(lAssets, assets);
             })
         }, 1000 * images.length);
     },
-    saveSquares(squares) {
+    showSquares(assets) {
+        let assetsFolder = __dirname + '/temp/assets/';
+        let htmlSquares = '';
+        this.getSquares().then(data => {
+            data.forEach(s => {
+                htmlSquares += `<img class="img-square" src="${assetsFolder + s.src}" title="${s.src}" id="${s.src}"/>`;
+            }, err => {
+                console.log(err)
+            });
+            assets.innerHTML = htmlSquares;
+        }, err => {
+            console.log('No file to read!')
+        });
+    },
+    saveSquares(squares, assets) {
+        let showSquares = () => {
+            this.showSquares(assets);
+        };
         let file = __dirname + '/temp/squares.json';
-        console.log(squares)
         if (fs.existsSync(file)) {
-            this.add(file, squares);
+            this.add(file, squares).then(showSquares) ;
         } else {
-            this.create(file, {}).then(() => {
-                this.add(file, squares);
+            this.create(file, []).then(() => {
+                this.add(file, squares).then(showSquares);
             })
         }
+    },
+    getSquares() {
+        let file = __dirname + '/temp/squares.json';
+        return jsonfile.readFile(file);
     }
+
 }

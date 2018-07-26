@@ -1,7 +1,7 @@
 [
   {
     "src": "Capturar.PNG",
-    "group": [
+    "groups": [
       {
         "title": "default",
         "colisor": {
@@ -15,7 +15,7 @@
   },
   {
     "src": "cars-time.jpg",
-    "group": [
+    "groups": [
       {
         "title": "default",
         "colisor": {
@@ -29,7 +29,7 @@
   },
   {
     "src": "chance_capa.jpeg",
-    "group": [
+    "groups": [
       {
         "title": "default",
         "colisor": {
