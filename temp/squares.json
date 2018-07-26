@@ -82,5 +82,33 @@
         }
       }
     ]
+  },
+  {
+    "src": "rockbrick-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
+  },
+  {
+    "src": "rockbrick-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisor": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": true
+        }
+      }
+    ]
   }
 ]

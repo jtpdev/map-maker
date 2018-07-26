@@ -56,7 +56,7 @@
                 </div>
                 <div class="groups">
                     <ul id="ul-groups">
-                        
+
                     </ul>
                 </div>
             </div>
@@ -71,10 +71,73 @@
             <h3>Properties</h3>
             <button class="fas fa-angle-double-right" id="btn-hide-properties" title="Hide properties"></button>
         </div>
+        <div>
+            <button id="btn-title-property" block></button>
+            <div class="config">
+                <div>
+                    src:
+                    <input type="text" class="input-md" id="input-src-square" value="10" disabled>
+                </div>
+                <div>
+                    groups:
+                    <select value="default" id="select-group"></select>
+                </div>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Colisors
+                                </th>
+                                <th>
+                                    <input type="checkbox" name="mark-all" id="check-all-colisors" disabled>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    up
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="check-up-colisors" disabled>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    rigth
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="check-rigth-colisors" disabled>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    down
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="check-down-colisors" disabled>
+                                </th>
+                            </tr>
+                            <tr>
+                                <th>
+                                    left
+                                </th>
+                                <th>
+                                    <input type="checkbox" id="check-left-colisors" disabled>
+                                </th>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+                <button class="btn" id="btn-done-property" block>Done</button>
+            </div>
+        </div>
     </div>
 </body>
 <!-- <script src="./js/main.js"></script> -->
-<script>require('./js/dnd')</script>
+<!-- <script>require('./js/dnd')</script> -->
 <script>require('./js/main')</script>
 
 

@@ -2,6 +2,17 @@ const jsonfile = require('jsonfile-promised');
 const fs = require('fs');
 const dnd = require('./app/js/dnd');
 
+const inSrcSquare = document.getElementById('input-src-square');
+const selectGroups = document.getElementById('select-group');
+
+const cbAllColisors = document.getElementById('check-all-colisors');
+const cbUpColisors = document.getElementById('check-up-colisors');
+const cbRightColisors = document.getElementById('check-rigth-colisors');
+const cbDownColisors = document.getElementById('check-down-colisors');
+const cbLeftColisors = document.getElementById('check-left-colisors');
+
+const btnDoneProperty = document.getElementById('btn-done-property');
+
 module.exports = {
     saveConfig(config) {
         let file = __dirname + '/temp/config.json';
@@ -19,7 +30,7 @@ module.exports = {
     },
 
     add(file, data) {
-       return jsonfile.writeFile(file, data, { spaces: 2 })
+        return jsonfile.writeFile(file, data, { spaces: 2 })
             .then(() => {
                 console.log('added');
             }).catch((err) => {
@@ -90,6 +101,122 @@ module.exports = {
                 imgSquare.draggable = true;
                 assets.appendChild(imgSquare);
                 imgSquare.addEventListener('dragstart', dnd.drag);
+                
+                imgSquare.addEventListener('click', event => {
+                    inSrcSquare.value = s.src;
+                    selectGroups.addEventListener('change', event => {
+                        this.getSquares().then(data => {
+                            data.forEach(s => {
+                                let selected = event.target.value;
+                                let groups = s.groups.filter(g => g.title == selected);
+                                cbUpColisors.disabled = false;
+                                cbRightColisors.disabled = false;
+                                cbDownColisors.disabled = false;
+                                cbLeftColisors.disabled = false;
+                                if (groups.length > 1) {
+                                    const group = groups[0];
+                                    updateGroup = g => {
+                                        if (g.title = group.title) {
+                                            return group;
+                                        } else {
+                                            return g;
+                                        }
+                                    };
+                                    this.updateSquares(s);
+                                    cbUpColisors.checked = group.up;
+                                    cbUpColisors.addEventListener('change', e => {
+                                        group.up = e.target.checked;
+                                        s.groups.map(updateGroup);
+                                        this.updateSquares(s);
+                                    });
+    
+                                    cbRightColisors.checked = group.right;
+                                    cbRightColisors.addEventListener('change', e => {
+                                        group.right = e.target.checked;
+                                        s.groups.map(updateGroup);
+                                        this.updateSquares(s);
+                                    });
+                                    
+                                    cbDownColisors.checked = group.down;
+                                    cbDownColisors.addEventListener('change', e => {
+                                        group.down = e.target.checked;
+                                        s.groups.map(updateGroup);
+                                        this.updateSquares(s);
+                                    });
+                                    
+                                    cbLeftColisors.checked = group.left;
+                                    cbLeftColisors.addEventListener('change', e => {
+                                        group.left = e.target.checked;
+                                        s.groups.map(updateGroup);
+                                        this.updateSquares(s);
+                                    });
+    
+                                }
+                            });
+                        })
+                    });
+                    this.getGroups().then(data => {
+                        let options = '';
+                        data.forEach(g => {
+                            options += `<option value="${g}" ${g == 'default' ? 'selected' : ''}>
+                                ${g}
+                            </option>`;
+                        });
+                        selectGroups.innerHTML = options;
+                    });
+                    this.getSquares().then(data => {
+                        data.forEach(s => {
+                            let groups = s.groups.filter(g => g.title == 'default');
+                            console.log(groups)
+                            cbUpColisors.disabled = false;
+                            cbRightColisors.disabled = false;
+                            cbDownColisors.disabled = false;
+                            cbLeftColisors.disabled = false;
+                            if (groups.length > 0) {
+                                const group = groups[0];
+                                updateGroup = g => {
+                                    if (g.title = group.title) {
+                                        return group;
+                                    } else {
+                                        return g;
+                                    }
+                                };
+                                this.updateSquares(s);
+                                cbUpColisors.value = group.up;
+                                console.log(cbUpColisors)
+                                cbUpColisors.addEventListener('change', e => {
+                                    console.log(e, e.target.checked)
+                                    group.up = e.target.checked;
+                                    s.groups.map(updateGroup);
+                                    this.updateSquares(s);
+                                });
+
+                                cbRightColisors.checked = group.right;
+                                cbRightColisors.addEventListener('change', e => {
+                                    group.right = e.target.checked;
+                                    s.groups.map(updateGroup);
+                                    this.updateSquares(s);
+                                });
+                                
+                                cbDownColisors.checked = group.down;
+                                cbDownColisors.addEventListener('change', e => {
+                                    group.down = e.target.checked;
+                                    s.groups.map(updateGroup);
+                                    this.updateSquares(s);
+                                });
+                                
+                                cbLeftColisors.checked = group.left;
+                                cbLeftColisors.addEventListener('change', e => {
+                                    group.left = e.target.checked;
+                                    s.groups.map(updateGroup);
+                                    this.updateSquares(s);
+                                });
+
+                            }
+                        });
+                    })
+
+                });
             }, err => {
                 console.log(err)
             });
@@ -104,7 +231,7 @@ module.exports = {
         };
         let file = __dirname + '/temp/squares.json';
         if (fs.existsSync(file)) {
-            this.add(file, squares).then(showSquares) ;
+            this.add(file, squares).then(showSquares);
         } else {
             this.create(file, []).then(() => {
                 this.add(file, squares).then(showSquares);
@@ -123,17 +250,17 @@ module.exports = {
         if (fs.existsSync(file)) {
             this.getGroups().then(data => {
                 data.forEach(g => {
-                    if(!(g in groups)) {
+                    if (!(g in groups)) {
                         groups.push(g);
                     }
                 });
                 this.add(file, groups);
             });
         } else {
-            this.create(file, []).then(() => {
+            this.create(file, ['default']).then(() => {
                 this.getGroups().then(data => {
                     data.forEach(g => {
-                        if(!(g in groups)) {
+                        if (!(g in groups)) {
                             groups.push(g);
                         }
                     });
@@ -157,5 +284,16 @@ module.exports = {
         let file = __dirname + '/temp/groups.json';
         return jsonfile.readFile(file);
     },
+
+    updateSquares(square) {
+        this.getSquares().then(data => {
+            data.filter(s => {
+                return s.src != square.src;
+            })
+            data.push(square);
+            this.saveSquares(data);
+        });
+
+    }
 
 }

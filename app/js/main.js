@@ -26,6 +26,17 @@ const inGroupName = document.getElementById('group-name');
 const btnAddGroup = document.getElementById('btn-add-group');
 const ulGroups = document.getElementById('ul-groups');
 
+const inSrcSquare = document.getElementById('input-src-square');
+const selectGroups = document.getElementById('select-group');
+
+const cbAllColisors = document.getElementById('check-all-colisors');
+const cbUpColisors = document.getElementById('check-up-colisors');
+const cbRightColisors = document.getElementById('check-rigth-colisors');
+const cbDownColisors = document.getElementById('check-down-colisors');
+const cbLeftColisors = document.getElementById('check-left-colisors');
+
+const btnDoneProperty = document.getElementById('btn-done-property');
+
 window.onload = () => {
     data.getConfig()
         .then((data) => {
