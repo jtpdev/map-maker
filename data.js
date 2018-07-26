@@ -71,11 +71,11 @@ module.exports = {
                         groups: [
                             {
                                 title: "default",
-                                colisor: {
-                                    up: true,
-                                    right: true,
-                                    down: true,
-                                    left: true,
+                                colisors: {
+                                    up: false,
+                                    right: false,
+                                    down: false,
+                                    left: false,
                                 }
                             }
                         ]
@@ -89,7 +89,6 @@ module.exports = {
 
     showSquares(assets) {
         let assetsFolder = __dirname + '/temp/assets/';
-        let htmlSquares = '';
 
         this.getSquares().then(data => {
             data.forEach(s => {
@@ -99,62 +98,64 @@ module.exports = {
                 imgSquare.id = s.src;
                 imgSquare.classList.add('img-square');
                 imgSquare.draggable = true;
-                assets.appendChild(imgSquare);
+                if (assets) {
+                    assets.appendChild(imgSquare);
+                }
                 imgSquare.addEventListener('dragstart', dnd.drag);
-                
+
                 imgSquare.addEventListener('click', event => {
                     inSrcSquare.value = s.src;
-                    selectGroups.addEventListener('change', event => {
-                        this.getSquares().then(data => {
-                            data.forEach(s => {
-                                let selected = event.target.value;
-                                let groups = s.groups.filter(g => g.title == selected);
-                                cbUpColisors.disabled = false;
-                                cbRightColisors.disabled = false;
-                                cbDownColisors.disabled = false;
-                                cbLeftColisors.disabled = false;
-                                if (groups.length > 1) {
-                                    const group = groups[0];
-                                    updateGroup = g => {
-                                        if (g.title = group.title) {
-                                            return group;
-                                        } else {
-                                            return g;
-                                        }
-                                    };
-                                    this.updateSquares(s);
-                                    cbUpColisors.checked = group.up;
-                                    cbUpColisors.addEventListener('change', e => {
-                                        group.up = e.target.checked;
-                                        s.groups.map(updateGroup);
-                                        this.updateSquares(s);
-                                    });
-    
-                                    cbRightColisors.checked = group.right;
-                                    cbRightColisors.addEventListener('change', e => {
-                                        group.right = e.target.checked;
-                                        s.groups.map(updateGroup);
-                                        this.updateSquares(s);
-                                    });
-                                    
-                                    cbDownColisors.checked = group.down;
-                                    cbDownColisors.addEventListener('change', e => {
-                                        group.down = e.target.checked;
-                                        s.groups.map(updateGroup);
-                                        this.updateSquares(s);
-                                    });
-                                    
-                                    cbLeftColisors.checked = group.left;
-                                    cbLeftColisors.addEventListener('change', e => {
-                                        group.left = e.target.checked;
-                                        s.groups.map(updateGroup);
-                                        this.updateSquares(s);
-                                    });
-    
-                                }
-                            });
-                        })
-                    });
+                    // selectGroups.addEventListener('change', event => {
+                    //     this.getSquares().then(data => {
+                    //         data.forEach(s => {
+                    //             let selected = event.target.value;
+                    //             let groups = s.groups.filter(g => g.title == selected);
+                    //             cbUpColisors.disabled = false;
+                    //             cbRightColisors.disabled = false;
+                    //             cbDownColisors.disabled = false;
+                    //             cbLeftColisors.disabled = false;
+                    //             if (groups.length > 1) {
+                    //                 const group = groups[0];
+                    //                 updateGroup = g => {
+                    //                     if (g.title = group.title) {
+                    //                         return group;
+                    //                     } else {
+                    //                         return g;
+                    //                     }
+                    //                 };
+                    //                 this.updateSquares(s);
+                    //                 cbUpColisors.checked = group.up;
+                    //                 cbUpColisors.addEventListener('change', e => {
+                    //                     group.up = e.target.checked;
+                    //                     s.groups.map(updateGroup);
+                    //                     this.updateSquares(s);
+                    //                 });
+
+                    //                 cbRightColisors.checked = group.right;
+                    //                 cbRightColisors.addEventListener('change', e => {
+                    //                     group.right = e.target.checked;
+                    //                     s.groups.map(updateGroup);
+                    //                     this.updateSquares(s);
+                    //                 });
+
+                    //                 cbDownColisors.checked = group.down;
+                    //                 cbDownColisors.addEventListener('change', e => {
+                    //                     group.down = e.target.checked;
+                    //                     s.groups.map(updateGroup);
+                    //                     this.updateSquares(s);
+                    //                 });
+
+                    //                 cbLeftColisors.checked = group.left;
+                    //                 cbLeftColisors.addEventListener('change', e => {
+                    //                     group.left = e.target.checked;
+                    //                     s.groups.map(updateGroup);
+                    //                     this.updateSquares(s);
+                    //                 });
+
+                    //             }
+                    //         });
+                    //     })
+                    // });
                     this.getGroups().then(data => {
                         let options = '';
                         data.forEach(g => {
@@ -165,9 +166,8 @@ module.exports = {
                         selectGroups.innerHTML = options;
                     });
                     this.getSquares().then(data => {
-                        data.forEach(s => {
-                            let groups = s.groups.filter(g => g.title == 'default');
-                            console.log(groups)
+                        data.filter(sq => sq.src == s.src).forEach(sqq => {
+                            let groups = sqq.groups.filter(g => g.title == 'default');
                             cbUpColisors.disabled = false;
                             cbRightColisors.disabled = false;
                             cbDownColisors.disabled = false;
@@ -181,35 +181,33 @@ module.exports = {
                                         return g;
                                     }
                                 };
-                                this.updateSquares(s);
-                                cbUpColisors.value = group.up;
-                                console.log(cbUpColisors)
+                                cbUpColisors.checked = group.colisors.up;
                                 cbUpColisors.addEventListener('change', e => {
-                                    console.log(e, e.target.checked)
-                                    group.up = e.target.checked;
-                                    s.groups.map(updateGroup);
-                                    this.updateSquares(s);
+                                    group.colisors.up = e.target.checked;
+                                    sqq.groups = sqq.groups.map(updateGroup);
+                                    console.log(sqq);
+                                    this.updateSquares(sqq);
                                 });
 
-                                cbRightColisors.checked = group.right;
+                                cbRightColisors.checked = group.colisors.right;
                                 cbRightColisors.addEventListener('change', e => {
-                                    group.right = e.target.checked;
-                                    s.groups.map(updateGroup);
-                                    this.updateSquares(s);
+                                    group.colisors.right = e.target.checked;
+                                    sqq.groups = sqq.groups.map(updateGroup);
+                                    this.updateSquares(sqq);
                                 });
-                                
-                                cbDownColisors.checked = group.down;
+
+                                cbDownColisors.checked = group.colisors.down;
                                 cbDownColisors.addEventListener('change', e => {
-                                    group.down = e.target.checked;
-                                    s.groups.map(updateGroup);
-                                    this.updateSquares(s);
+                                    group.colisors.down = e.target.checked;
+                                    sqq.groups = sqq.groups.map(updateGroup);
+                                    this.updateSquares(sqq);
                                 });
-                                
-                                cbLeftColisors.checked = group.left;
+
+                                cbLeftColisors.checked = group.colisors.left;
                                 cbLeftColisors.addEventListener('change', e => {
-                                    group.left = e.target.checked;
-                                    s.groups.map(updateGroup);
-                                    this.updateSquares(s);
+                                    group.colisors.left = e.target.checked;
+                                    sqq.groups = sqq.groups.map(updateGroup);
+                                    this.updateSquares(sqq);
                                 });
 
                             }
@@ -287,11 +285,12 @@ module.exports = {
 
     updateSquares(square) {
         this.getSquares().then(data => {
-            data.filter(s => {
+            data = data.filter(s => {
                 return s.src != square.src;
             })
             data.push(square);
-            this.saveSquares(data);
+            let file = __dirname + '/temp/squares.json';
+            this.add(file, data);
         });
 
     }

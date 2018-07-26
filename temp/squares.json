@@ -1,28 +1,14 @@
 [
   {
-    "src": "concrete-512x512.jpg",
-    "groups": [
-      {
-        "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
-        }
-      }
-    ]
-  },
-  {
     "src": "dirt-512x512.jpg",
     "groups": [
       {
         "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
         }
       }
     ]
@@ -32,11 +18,11 @@
     "groups": [
       {
         "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
         }
       }
     ]
@@ -46,11 +32,11 @@
     "groups": [
       {
         "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
         }
       }
     ]
@@ -60,11 +46,11 @@
     "groups": [
       {
         "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
         }
       }
     ]
@@ -74,39 +60,25 @@
     "groups": [
       {
         "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
         }
       }
     ]
   },
   {
-    "src": "rockbrick-512x512.jpg",
+    "src": "concrete-512x512.jpg",
     "groups": [
       {
         "title": "default",
-        "colisor": {
+        "colisors": {
           "up": true,
-          "right": true,
+          "right": false,
           "down": true,
-          "left": true
-        }
-      }
-    ]
-  },
-  {
-    "src": "rockbrick-512x512.jpg",
-    "groups": [
-      {
-        "title": "default",
-        "colisor": {
-          "up": true,
-          "right": true,
-          "down": true,
-          "left": true
+          "left": false
         }
       }
     ]
