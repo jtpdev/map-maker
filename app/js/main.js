@@ -144,11 +144,10 @@ addGroup = groupName => {
             ulGroups.removeChild(li);
         }
         if (event.key == 's' && event.ctrlKey) {
-            data.removeGroup(groupName);
-            setTimeout(() => {
+            data.removeGroup(groupName).then(() => {
                 data.saveGroup(event.target.value);
                 groupName = event.target.value;
-            }, 1000);
+            });
         }
     });
 

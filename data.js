@@ -145,11 +145,11 @@ module.exports = {
 
     removeGroup(group) {
         let file = __dirname + '/temp/groups.json';
-        this.getGroups().then(data => {
+        return this.getGroups().then(data => {
             let groups = data.filter(g => {
                 return g != group;
             });
-            this.add(file, groups);
+            return this.add(file, groups);
         });
     },
 
