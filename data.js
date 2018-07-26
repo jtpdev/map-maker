@@ -1,5 +1,6 @@
 const jsonfile = require('jsonfile-promised');
 const fs = require('fs');
+const dnd = require('./app/js/dnd');
 
 module.exports = {
     saveConfig(config) {
@@ -77,13 +78,20 @@ module.exports = {
     showSquares(assets) {
         let assetsFolder = __dirname + '/temp/assets/';
         let htmlSquares = '';
+
         this.getSquares().then(data => {
             data.forEach(s => {
-                htmlSquares += `<img class="img-square" src="${assetsFolder + s.src}" title="${s.src}" id="${s.src}"/>`;
+                let imgSquare = document.createElement('img');
+                imgSquare.src = assetsFolder + s.src;
+                imgSquare.title = s.src;
+                imgSquare.id = s.src;
+                imgSquare.classList.add('img-square');
+                imgSquare.draggable = true;
+                assets.appendChild(imgSquare);
+                imgSquare.addEventListener('dragstart', dnd.drag);
             }, err => {
                 console.log(err)
             });
-            assets.innerHTML = htmlSquares;
         }, err => {
             console.log('No file to read!')
         });

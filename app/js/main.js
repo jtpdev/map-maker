@@ -1,4 +1,5 @@
 const data = require('../../data');
+const dnd = require('./dnd');
 
 const btnHideExplorer = document.getElementById('btn-hide-explorer');
 const btnHideProperties = document.getElementById('btn-hide-properties');
@@ -99,6 +100,12 @@ btnDoneConfig.addEventListener('click', event => {
     }
     mapHtml += '</div>';
     map.innerHTML = mapHtml;
+    let maps = document.getElementsByClassName('map-square');
+    for(let k = 0; k < maps.length; k++) {
+        let m = maps[k];
+        m.addEventListener('drop', event => dnd.drop(event));
+        m.addEventListener('dragover', dnd.allowDrop);
+    }
 });
 
 inImportAssets.addEventListener('change', event => {
