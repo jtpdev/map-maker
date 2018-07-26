@@ -108,6 +108,7 @@ module.exports = {
                     selectGroups.addEventListener('change', event => {
                         this.getSquares().then(data => {
                             data.filter(sq => sq.src == s.src).forEach(sqq => {
+                                console.log(sqq)
                                 let selected = event.target.value;
                                 let groups = sqq.groups.filter(g => g.title == selected);
                                 cbUpColisors.disabled = false;
@@ -195,6 +196,7 @@ module.exports = {
                                 }
                             });
                         })
+                        selectGroups.removeEventListener('change');
                     });
                     this.getGroups().then(data => {
                         let options = '';
