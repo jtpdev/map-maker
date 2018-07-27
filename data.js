@@ -29,6 +29,23 @@ module.exports = {
         }
     },
 
+    saveMap(map) {
+        let file = __dirname + '/temp/map.json';
+        if (fs.existsSync(file)) {
+            this.add(file, map);
+        } else {
+            this.create(file, []).then(() => {
+                this.add(file, map);
+            })
+        }
+    },
+    
+    getMap() {
+        let file = __dirname + '/temp/map.json';
+        return jsonfile.readFile(file);
+    },
+
+
     add(file, data) {
         return jsonfile.writeFile(file, data, { spaces: 2 })
             .then(() => {
@@ -286,6 +303,18 @@ module.exports = {
     getSquares() {
         let file = __dirname + '/temp/squares.json';
         return jsonfile.readFile(file);
+    },
+
+    getSquare(src) {
+        let square;
+        this.getSquares().then(ss => {
+            square = ss.filter(s => s.src == src)[0];
+        });
+        let canReturn;
+        while (!canReturn) {
+            canReturn = square;
+        }
+        return square;
     },
 
     saveGroup(group) {

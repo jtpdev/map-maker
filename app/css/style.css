@@ -166,3 +166,20 @@ input[type=file] {
 .in-group {
     width: 100px;
 }
+
+#btn-save-map {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -60px;
+    right: 210px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: bottom .5s;
+}
+
+#btn-save-map:hover {
+    bottom: 10px;
+}
