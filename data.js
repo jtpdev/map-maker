@@ -105,10 +105,11 @@ module.exports = {
 
                 imgSquare.addEventListener('click', event => {
                     inSrcSquare.value = s.src;
-                    selectGroups.addEventListener('change', event => {
+
+
+                    let selectGroupsEL = event => {
                         this.getSquares().then(data => {
                             data.filter(sq => sq.src == s.src).forEach(sqq => {
-                                console.log(sqq)
                                 let selected = event.target.value;
                                 let groups = sqq.groups.filter(g => g.title == selected);
                                 cbUpColisors.disabled = false;
@@ -126,7 +127,7 @@ module.exports = {
                                             left: false,
                                         }
                                     });
-                                    
+
                                     const group = groups[0];
                                     cbUpColisors.checked = group.colisors.up;
                                     cbUpColisors.addEventListener('change', e => {
@@ -155,8 +156,8 @@ module.exports = {
                                         sqq.groups.push(group);
                                         this.updateSquares(sqq);
                                     });
-                                
-                                } else  if (groups.length > 0) {
+
+                                } else if (groups.length > 0) {
                                     const group = groups[0];
                                     updateGroup = g => {
                                         if (g.title == group.title) {
@@ -196,8 +197,12 @@ module.exports = {
                                 }
                             });
                         })
-                        selectGroups.removeEventListener('change');
-                    });
+                        selectGroups.removeEventListener('change', selectGroupsEL);
+                    };
+
+                    selectGroups.addEventListener('change', selectGroupsEL);
+
+
                     this.getGroups().then(data => {
                         let options = '';
                         data.forEach(g => {
