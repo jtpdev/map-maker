@@ -305,16 +305,11 @@ module.exports = {
         return jsonfile.readFile(file);
     },
 
-    getSquare(src) {
-        let square;
-        this.getSquares().then(ss => {
-            square = ss.filter(s => s.src == src)[0];
+    getSquareBySrc(src) {
+        if(!src) return null;
+        return this.getSquares().then(ss => {
+            return ss.filter(s => s.src == src)[0];
         });
-        let canReturn;
-        while (!canReturn) {
-            canReturn = square;
-        }
-        return square;
     },
 
     saveGroup(group) {

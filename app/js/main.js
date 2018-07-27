@@ -60,31 +60,48 @@ window.onload = () => {
             addGroup(g);
         });
     });
-    getMap().then(data => {
+    data.getMap().then(data => {
         // create squares by saved map;
-        // let config = data.config;
-        // let h = r * s;
-        // let w = c * s;
+        let config = data.config;
+        let s = config.s
+        let r = config.r;
+        let c = config.c;
+        let h = r * s;
+        let w = c * s;
 
-        // let mapHtml = `<div class="map-html" id="map-wrapper" style="width: ${w + 5}px; height:${h + 5}px" >`
-        // for (let i = 0; i < r; i++) {
-        //     for (let j = 0; j < c; j++) {
-        //         let id = `m_${i}_${j}`;
-        //         let square =
-        //             `<span style="width: ${s - 1}px; height:${s - 1}px; ${(i + 1) == r ? 'border-bottom: 1px solid;' : ''}${(j + 1) == c ? 'border-right: 1px solid;' : ''}" class="map-square" id="${id}">
+        let mapHtml = `<div class="map-html" id="map-wrapper" style="width: ${w + 5}px; height:${h + 5}px" >`
+        for (let i = 0; i < r; i++) {
+            for (let j = 0; j < c; j++) {
+                let id = `m_${i}_${j}`;
+                let square =
+                    `<span style="width: ${s - 1}px; height:${s - 1}px; ${(i + 1) == r ? 'border-bottom: 1px solid;' : ''}${(j + 1) == c ? 'border-right: 1px solid;' : ''}" class="map-square" id="${id}">
                 
-        //     </span>`;
-        //         mapHtml += square;
-        //     }
-        // }
-        // mapHtml += '</div>';
-        // map.innerHTML = mapHtml;
-        // let maps = document.getElementsByClassName('map-square');
-        // for (let k = 0; k < maps.length; k++) {
-        //     let m = maps[k];
-        //     m.addEventListener('drop', event => dnd.drop(event));
-        //     m.addEventListener('dragover', dnd.allowDrop);
-        // }
+            </span>`;
+                mapHtml += square;
+            }
+        }
+        mapHtml += '</div>';
+        map.innerHTML = mapHtml;
+        let maps = document.getElementsByClassName('map-square');
+        for (let k = 0; k < maps.length; k++) {
+            let m = maps[k];
+            m.addEventListener('drop', event => dnd.drop(event));
+            m.addEventListener('dragover', dnd.allowDrop);
+            let sqImage = data.squares.filter(sq => sq.id == m.id)[0];
+            if (sqImage.src) {
+                m.innerHTML = '';
+                var img = document.createElement('img');
+                img.id = `img_${m.id}`;
+                img.style.height = m.style.height;
+                img.style.width = m.style.width;
+                img.classList.add('img-on-square');
+                img.title = sqImage.src;
+                img.src = sqImage.src;
+                img.draggable = true;
+                img.addEventListener('dragstart', dnd.drag);
+                m.appendChild(img);
+            }
+        }
     });
 }
 

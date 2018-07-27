@@ -7,26 +7,26 @@ const map = document.getElementById('map');
 btnSaveMap.addEventListener('click', event => {
     // save map
     let mapWrapper = map.firstChild;
-    if(mapWrapper) {
-        let children = mapWrapper.childNodes;
-        let map = {};
-        data.getConfig().then(data => {
-            map.config = data;
-        });
-        let sqMaps = [];
-        for(let i = 0; i < children.length; i++) {
-            let child = children[i];
-            let src = child.firstChild.src;
-            console.log(child)
-            let sqMap = {
-                id: child.id,
-                s: child.style.h,
-                square: src ? data.getSquares(src) : null
+    if (mapWrapper) {
+        data.getConfig().then(config => {
+            let children = mapWrapper.childNodes;
+            let map = {
+                config
             };
-            sqMaps.push(sqMap);
-        }
-        map.squares = sqMaps;
-        data.saveMap(sqMaps);
+            let sqMaps = [];
+            for (let i = 0; i < children.length; i++) {
+                let child = children[i];
+                let src = child.firstChild ? child.firstChild.src : null;
+                console.log(child, child.firstChild, src)
+                let sqMap = {
+                    id: child.id,
+                    src: src
+                };
+                sqMaps.push(sqMap);
+            }
+            map.squares = sqMaps;
+            data.saveMap(map);
+        });
     }
-    
+
 });
