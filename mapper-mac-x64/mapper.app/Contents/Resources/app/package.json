@@ -1,0 +1,24 @@
+{
+  "name": "map-maker",
+  "version": "1.0.0",
+  "description": "A creator of maps to games",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "packager-all": "npm run packager-win && npm run packager-mac && npm run packager-linux",
+    "packager-win": "electron-packager . mapper --platform=win32 --arch=x64 --icon=./icons/icon.ico",
+    "packager-mac": "electron-packager . mapper --platform=darwin --arch=x64 --icon=./icons/icon.icns",
+    "packager-linux": "electron-packager . mapper --platform=linux --arch=x64 --icon=./icons/icon.png"
+  },
+  "author": "Jimmy Porto",
+  "license": "MIT",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.2.0",
+    "jsonfile-promised": "0.0.1"
+  },
+  "devDependencies": {
+    "electron": "^2.0.4",
+    "electron-packager": "^12.1.0",
+    "ncp": "^2.0.0"
+  }
+}
