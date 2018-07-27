@@ -168,7 +168,7 @@ input[type=file] {
     width: 100px;
 }
 
-#btn-save-map {
+#btn-save-map, #export-save-map {
     width: 80px;
     height: 80px;
     border: none;
@@ -181,6 +181,27 @@ input[type=file] {
     transition: bottom .5s;
 }
 
-#btn-save-map:hover {
+#btn-save-map {
+    right: 300px;
+}
+
+#export-save-map {
+    text-align: center;
+}
+
+#btn-save-map:hover, #export-save-map:hover {
     bottom: 10px;
+}
+
+#in-path {
+    display: none;
+}
+
+#lbl-in-path {
+    cursor: pointer;
+    height: 80px !important;
+    width: 80px;
+    position: relative;
+    display: block;
+    padding-top: 24px;
 }

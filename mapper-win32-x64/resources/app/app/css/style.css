@@ -1,0 +1,186 @@
+@font-face {
+    font-family: roboto;
+    src: url(../fonts/Roboto-Regular.ttf);
+}
+
+html, body {
+    font-family: roboto;
+    background-color: #373737;
+    margin-top: 0;
+    overflow: hidden;
+}
+
+.comp {
+    height: 100%;
+    position: fixed;
+    margin: 0;
+    border: 1px solid #000;
+}
+
+.explorer, .properties {
+    width: 200px;
+    background-color: #373737;
+    color: #FFF;
+}
+
+.explorer {
+    left: 0;
+}
+
+.h-explorer {
+    left: 0;
+    width: 50px;
+    display: none;
+}
+
+.properties {
+    left: calc(100% - 200px);
+}
+
+.h-properties {
+    left: calc(100% - 50px);
+    width: 50px;
+    display: none;
+}
+
+h3 {
+    display: inline-block;
+    width: 70%;
+    padding: 10px; 
+    margin-top: 0;
+    background-color: #242424
+}
+
+.header {
+    background: #242424;
+}
+
+.header > button {
+    display: inline-block;
+    color: #c6c6c6;
+    background: #242424;
+    border: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+input[type=number], input[type=text]  {
+    border: 1px solid #000;
+    border-radius: 5px;
+    background: #4d4d4d;
+    color: #FFF;
+}
+
+.input-md {
+    width: calc(50% - 36px);
+}
+
+#btn-config, #btn-done-config {
+    width: 100%;
+    color: #FFF;
+    background-color: #373737;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+}
+
+.btn {
+    background: #ff5d12 !important;
+}
+
+#size-config {
+    width: calc(100% - 81px);
+}
+
+.config > div {
+    margin: 5px 0;
+}
+
+.map {
+    left: 200px;
+    width: calc(100% - 400px);
+    background-color: #242424;
+    overflow: auto;
+    position: absolute;
+    margin: 0;
+    padding: 0;
+}
+
+.map-square {
+    border: 1px solid #c6c6c6;
+    border-bottom: 0;
+    border-right: 0;
+    display: inline-block;
+    margin: 0 !important;
+    padding: 0 !important;
+    color: #FFF;
+    position: relative;
+    vertical-align: text-top;
+}
+
+input[type=file] {
+    display: none;
+}
+
+#btn-import-assets {
+    width: 100%;
+    color: #FFF;
+    border: none;
+    cursor: pointer;
+    height: 40px;
+    padding: 0;
+}
+
+#btn-import-assets > label {
+    cursor: pointer;
+    height: calc(100% - 10px) !important;
+    width: 100% !important;
+    display: block;
+    padding-top: 10px;
+}
+
+.img-square {
+    height: 64px;
+    width: 64px;
+    display: inline-block;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.img-on-square {
+    cursor: pointer;
+}
+
+#group-name {
+    width: 150px;
+}
+
+#btn-add-group {
+    border: 0;
+    border-radius: 4px;
+    width: 30px;
+    margin-left: 5px;
+}
+
+.in-group {
+    width: 100px;
+}
+
+#btn-save-map {
+    width: 80px;
+    height: 80px;
+    border: none;
+    border-radius: 50px;
+    position: absolute;
+    bottom: -60px;
+    right: 210px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: bottom .5s;
+}
+
+#btn-save-map:hover {
+    bottom: 10px;
+}

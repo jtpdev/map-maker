@@ -1,0 +1,95 @@
+[
+  {
+    "src": "grass-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "metal-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "rock-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "rockbrick-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": false,
+          "right": false,
+          "down": false,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "concrete-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": true,
+          "right": false,
+          "down": true,
+          "left": false
+        }
+      }
+    ]
+  },
+  {
+    "src": "dirt-512x512.jpg",
+    "groups": [
+      {
+        "title": "default",
+        "colisors": {
+          "up": true,
+          "right": true,
+          "down": true,
+          "left": false
+        }
+      },
+      {
+        "title": "Testa",
+        "colisors": {
+          "up": true,
+          "right": false,
+          "down": false,
+          "left": false
+        }
+      }
+    ]
+  }
+]

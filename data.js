@@ -1,6 +1,9 @@
 const jsonfile = require('jsonfile-promised');
 const fs = require('fs');
 const dnd = require('./app/js/dnd');
+const ncp = require('ncp').ncp;
+
+ncp.limit = 16;
 
 const inSrcSquare = document.getElementById('input-src-square');
 const selectGroups = document.getElementById('select-group');
@@ -32,10 +35,10 @@ module.exports = {
     saveMap(map) {
         let file = __dirname + '/temp/map.json';
         if (fs.existsSync(file)) {
-            this.add(file, map);
+            return this.add(file, map);
         } else {
-            this.create(file, []).then(() => {
-                this.add(file, map);
+            return this.create(file, []).then(() => {
+                return this.add(file, map);
             })
         }
     },
@@ -325,7 +328,7 @@ module.exports = {
                 this.add(file, groups);
             });
         } else {
-            this.create(file, ['default']).then(() => {
+            this.create(file, []).then(() => {
                 this.getGroups().then(data => {
                     data.forEach(g => {
                         if (!(g in groups)) {
@@ -363,6 +366,24 @@ module.exports = {
             this.add(file, data);
         });
 
+    },
+
+    export(event) {
+        let output = document.getElementById("listing");
+        if (event.target.files.length > 0) {
+            let value = event.target.files[0].path;
+            let wsDir = __dirname + '/temp';
+            console.log(wsDir, value, output)
+            ncp(__dirname + '/temp', value, err => {
+                if (err) {
+                    return console.error(err);
+                }
+                alert('Exported');
+                console.log('done!');
+            });
+            console.log(this)
+            // copy(wsDir, value);
+        }
     }
 
 }
