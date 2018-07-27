@@ -16,14 +16,16 @@ module.exports = {
         var data = ev.dataTransfer.getData("text");
         var imgSrc = document.getElementById(data);
         var img = this.clone(imgSrc);
-        img.id = `img_${el.id}`;
-        img.style.height = el.style.height;
-        img.style.width = el.style.width;
-        img.classList.add('img-on-square');
-        img.title = imgSrc.title;
-        img.draggable = true;
-        img.addEventListener('dragstart', this.drag);
-        el.appendChild(img);
+        if(img) {
+            img.id = `img_${el.id}`;
+            img.style.height = el.style.height;
+            img.style.width = el.style.width;
+            img.classList.add('img-on-square');
+            img.title = imgSrc.title;
+            img.draggable = true;
+            img.addEventListener('dragstart', this.drag);
+            el.appendChild(img);
+        }
     },
     clone(obj) {
         if (null == obj || "object" != typeof obj) return obj;
